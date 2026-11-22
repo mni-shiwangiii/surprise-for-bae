@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Surprise For You 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* --- General Styling --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            color: #4a4a4a;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- Login Screen --- */
+        #login-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 1s ease;
+        }
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #d81b60;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.15);
+            max-width: 90%;
+        }
+        input[type="password"] {
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #f8bbd0;
+            border-radius: 30px;
+            outline: none;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            transition: border 0.3s;
+        }
+        input[type="password"]:focus {
+            border-color: #d81b60;
+        }
+        button {
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
+            transition: transform 0.2s, background 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            background-color: #c2185b;
+        }
+        #error-msg {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            height: 20px;
+        }
+
+        /* --- Main Content (Hidden initially) --- */
+        #main-content {
+            display: none;
+            padding: 40px 20px;
+            animation: fadeIn 1.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Reasons Section --- */
+        .reasons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        .reason-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            width: 220px;
+            transition: transform 0.3s;
+            border-top: 5px solid #d81b60;
+        }
+        .reason-card:hover {
+            transform: translateY(-10px);
+        }
+        .reason-card h3 {
+            color: #d81b60;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .reason-card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        /* --- Love Letter --- */
+        .letter {
+            background: #fff9c4;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: left;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #333;
+            position: relative;
+        }
+        /* Tape effect */
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Floating Hearts Background */
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            font-size: 24px;
+            color: #d81b60;
+            animation: floatUp 6s linear infinite;
+            opacity: 0;
+            z-index: -1;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FLOATING HEARTS -->
+    <div class="heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+    <div class="heart" style="left: 30%; animation-delay: 2s;">💖</div>
+    <div class="heart" style="left: 50%; animation-delay: 1s;">💕</div>
+    <div class="heart" style="left: 70%; animation-delay: 3s;">❤️</div>
+    <div class="heart" style="left: 90%; animation-delay: 4s;">💘</div>
+
+    <!-- SCREEN 1: PASSWORD -->
+    <div id="login-screen">
+        <h1>Hiiiii Baeeeeee</h1>
+        <div class="input-group">
+            <p style="margin-bottom: 15px; font-size: 0.95rem;">Enter our secret code to unlock your surprise:<br><i>(Hint: a special date for us)</i></p>
+            <input type="password" id="password" placeholder="Enter code here">
+            <br>
+            <button onclick="checkPassword()">Unlock 💝</button>
+            <div id="error-msg"></div>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: SURPRISE CONTENT -->
+    <div id="main-content">
+        <h1>I had the best time with you.</h1>
+        <p style="font-size: 1.1rem; margin-top: 10px;">Just a little something to remind you how much you mean to me.</p>
+
+        <!-- REASONS SECTION -->
+        <div class="reasons-container">
+            <div class="reason-card">
+                <h3>Your Smile</h3>
+                <p>It literally lights up my whole day. Seeing you happy is my favorite thing in the world.</p>
+            </div>
+            <div class="reason-card">
+                <h3>Your Laugh</h3>
+                <p>Whether it's a little chuckle or a full laugh, it's the best sound I've ever heard.</p>
+            </div>
+            <div class="reason-card">
+                <h3>How You Make Me Feel</h3>
+                <p>Safe, loved, and like the luckiest girl in the world. You're my comfort zone.</p>
+            </div>
+            <div class="reason-card">
+                <h3>Our Time Together</h3>
+                <p>Even if we are just sitting in a booth at a restaurant, every moment with you is my favorite moment.</p>
+            </div>
+        </div>
+
+        <!-- LOVE LETTER -->
+        <div class="letter">
+            <p>My dearest baeee,</p>
+            <br>
+            <p>I just wanted to build this little corner of the internet just for you. I had such an amazing time on our date on Friday. </p>
+            <br>
+            <p>Thank you for being my person. I can't wait for our next adventure and for all the memories we still have to make.</p>
+            <br>
+            <p>Yours always,</p>
+            <p>Me 💕</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT (The logic for the password) -->
+    <script>
+        // The password is set to 1031
+        const secretPassword = "1031"; 
+
+        function checkPassword() {
+            const input = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-msg');
+            const loginScreen = document.getElementById('login-screen');
+            const mainContent = document.getElementById('main-content');
+
+            if (input === secretPassword) {
+                loginScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loginScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                }, 1000); // Waits 1 second for the fade effect
+            } else {
+                errorMsg.innerText = "Oops! Try again, baeee.";
+                document.getElementById('password').value = "";
+            }
+        }
+
+        // Allow pressing "Enter" on the keyboard to submit
+        document.getElementById('password').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
